@@ -1,10 +1,16 @@
 ---
 import BaseLayout from "@layout/BaseLayout.astro"
 import Header from "@components/layout/Header.astro"
+import TechStack from "@sections/TechStack.astro"
+import Hero from "@components/sections/Hero.astro"
+import ImpactMetrics from "@sections/ImpactMetrics.astro"
 ---
 
 <BaseLayout title="Yesser | Full-stack Developer">
 	<Fragment slot="header">
 		<Header />
 	</Fragment>
+	<Hero />
+	<TechStack />
+	<ImpactMetrics />
 </BaseLayout>

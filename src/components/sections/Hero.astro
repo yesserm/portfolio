@@ -1,0 +1,106 @@
+---
+const roles = [
+  "Full‑stack Developer",
+  "React Native Specialist",
+  "ASP.NET Web API Developer",
+  "Mobile & Web Engineer"
+];
+---
+
+<section class="relative flex flex-col items-center justify-center text-center py-32 px-6 overflow-hidden">
+
+  <!-- Background gradient animation -->
+  <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-transparent animate-pulse"></div>
+
+  <!-- Floating blurred blobs -->
+  <div class="absolute -top-20 -left-20 w-72 h-72 bg-cyan-500/20 blur-3xl rounded-full animate-blob"></div>
+  <div class="absolute top-40 -right-20 w-72 h-72 bg-purple-500/20 blur-3xl rounded-full animate-blob animation-delay-2000"></div>
+
+  <!-- Content -->
+  <h1 class="text-4xl md:text-6xl font-bold text-white drop-shadow-lg animate-fade-in">
+    Hi, I'm <span class="text-cyan-400">Yesser</span>
+  </h1>
+
+  <p class="mt-4 text-xl md:text-2xl text-slate-300 h-8 animate-fade-in animation-delay-300">
+    <span id="typewriter"></span>
+  </p>
+
+  <p class="mt-6 max-w-xl text-slate-400 animate-fade-in animation-delay-500">
+    I build modern, fast and scalable applications for mobile and web.  
+    Focused on clean architecture, performance and great user experience.
+  </p>
+
+    <div class="mt-10 flex gap-4 justify-center">
+    <a
+        href="#projects"
+        class="px-8 py-3 rounded-full bg-cyan-500 text-slate-900 font-semibold shadow-lg hover:bg-cyan-400 transition-all duration-300"
+    >
+        View Projects
+    </a>
+
+    <a
+        href="/cv.pdf"
+        class="px-8 py-3 rounded-full border border-slate-600 text-slate-300 hover:bg-slate-800 transition-all duration-300"
+    >
+        Download CV
+    </a>
+    </div>
+</section>
+
+<!-- Typewriter Script -->
+<script>
+  const roles = JSON.parse(`${JSON.stringify(roles)}`);
+  const el = document.getElementById("typewriter");
+
+  let index = 0;
+  let charIndex = 0;
+  let deleting = false;
+
+  function type() {
+    const current = roles[index];
+
+    if (!deleting) {
+      el.textContent = current.slice(0, charIndex++);
+      if (charIndex > current.length) {
+        deleting = true;
+        setTimeout(type, 1200);
+        return;
+      }
+    } else {
+      el.textContent = current.slice(0, charIndex--);
+      if (charIndex < 0) {
+        deleting = false;
+        index = (index + 1) % roles.length;
+      }
+    }
+
+    setTimeout(type, deleting ? 60 : 90);
+  }
+
+  type();
+</script>
+
+<style>
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.8s ease forwards;
+  }
+  .animation-delay-300 { animation-delay: 0.3s; }
+  .animation-delay-500 { animation-delay: 0.5s; }
+  .animation-delay-700 { animation-delay: 0.7s; }
+
+  @keyframes blob {
+    0%, 100% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -20px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+  }
+  .animate-blob {
+    animation: blob 8s infinite;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+</style>

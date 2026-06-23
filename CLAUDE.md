@@ -20,3 +20,12 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+
+git filter-branch --env-filter '
+export GIT_AUTHOR_NAME="yesserm"
+export GIT_AUTHOR_EMAIL="yessermiranda0106@gmail.com"
+export GIT_COMMITTER_NAME="soporte-has"
+export GIT_COMMITTER_EMAIL="soporte@hassolutions.net"
+' --tag-name-filter cat -- --all
+
