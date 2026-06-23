@@ -1,10 +1,14 @@
-# Astro Starter Kit: Minimal
+# Yesser Portfolio — Personal Developer Website  
+Este proyecto es un portfolio profesional construido con Astro y Tailwind CSS, diseñado para presentar de forma clara y moderna los aspectos esenciales de tu vida profesional: experiencia, habilidades, proyectos, blog técnico y presencia digital.
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+El objetivo es ofrecer un sitio rápido, accesible y fácil de mantener, con una arquitectura limpia inspirada en buenas prácticas de frontend moderno.  
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Tech Stack  
+- Astro — Framework ultra rápido orientado a contenido
+- Tailwind CSS v3 — Estilos utilitarios para un diseño limpio y consistente
+- TypeScript — Tipado estático para mayor robustez
+- pnpm — Gestor de paquetes rápido y eficiente
+- Arquitectura modular — Componentes, secciones y contenido desacoplado
 
 ## 🚀 Project Structure
 
@@ -14,16 +18,28 @@ Inside of your Astro project, you'll see the following folders and files:
 /
 ├── public/
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/         # Componentes UI, layout y secciones
+│   ├── content/            # Blog, proyectos y contenido estructurado
+│   ├── lib/                # Utilidades y helpers
+│   ├── pages/              # Rutas principales del sitio
+│   └── styles/             # Estilos globales (Tailwind)
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Features  
+- ✨ Diseño moderno y minimalista
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- 📄 Blog técnico con soporte para Markdown
 
-Any static assets, like images, can be placed in the `public/` directory.
+- 🗂️ Proyectos dinámicos con datos estructurados
+
+- 🌙 Modo oscuro (opcional)
+
+- ⚡ Rendimiento optimizado gracias a Astro
+
+- 📱 Responsive para móviles, tablets y desktop
+
+- 🔤 Imports absolutos configurados vía tsconfig.json
 
 ## 🧞 Commands
 
@@ -38,6 +54,21 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `pnpm astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+## Objetivo del proyecto
+Este portfolio está diseñado para:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Mostrar tu experiencia profesional
+
+- Destacar tus habilidades técnicas
+
+- Presentar tus proyectos más importantes
+
+- Publicar artículos o notas en un blog técnico
+
+- Servir como carta de presentación para reclutadores y clientes
+
+## Contacto
+Yesser Miranda  
+Full‑stack Developer  
+📧 yessermiranda15@gmail.com  
+🌐 https://yesserm.dev
