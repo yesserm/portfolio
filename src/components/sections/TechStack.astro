@@ -1,13 +1,53 @@
-<section class="py-16 text-center">
-  <h2 class="text-xl text-slate-400 mb-6">Tech Stack</h2>
+---
+const stackGroups = [
+  {
+    title: "Frontend & Mobile",
+    accent: "text-cyan-300",
+    description: "Interfaces that feel fast, clear, and production-ready across devices.",
+    technologies: ["Astro", "React", "React Native", "Expo", "TypeScript", "Tailwind CSS"]
+  },
+  {
+    title: "Backend & APIs",
+    accent: "text-violet-300",
+    description: "Reliable services with maintainable contracts and scalable foundations.",
+    technologies: ["ASP.NET Web API", "C#", "REST APIs", "Authentication", "Clean Architecture"]
+  },
+  {
+    title: "Data & Delivery",
+    accent: "text-emerald-300",
+    description: "Structured data, smooth deployments, and practical operational workflows.",
+    technologies: ["SQL Server", "PostgreSQL", "Vercel", "Git", "CI/CD"]
+  }
+];
+---
 
-  <div class="flex flex-wrap justify-center gap-6 text-slate-300 text-sm">
-    <span class="px-4 py-2 bg-slate-800/50 rounded-full">React Native</span>
-    <span class="px-4 py-2 bg-slate-800/50 rounded-full">Expo</span>
-    <span class="px-4 py-2 bg-slate-800/50 rounded-full">ASP.NET Web API</span>
-    <span class="px-4 py-2 bg-slate-800/50 rounded-full">C#</span>
-    <span class="px-4 py-2 bg-slate-800/50 rounded-full">SQL Server</span>
-    <span class="px-4 py-2 bg-slate-800/50 rounded-full">TypeScript</span>
-    <span class="px-4 py-2 bg-slate-800/50 rounded-full">Tailwind CSS</span>
+<section id="tech-stack" class="px-6 py-20">
+  <div class="mx-auto max-w-6xl">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.24em] text-cyan-300">Tech Stack</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-white md:text-4xl">
+        Tools chosen for speed, clarity, and long-term maintainability.
+      </h2>
+      <p class="mt-4 text-base leading-7 text-slate-400">
+        A focused stack for building polished web platforms, mobile apps, APIs, and data-backed products.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-4 md:grid-cols-3">
+      {stackGroups.map((group) => (
+        <article class="rounded-lg border border-slate-800 bg-slate-900/60 p-6 transition duration-300 hover:-translate-y-1 hover:border-slate-700">
+          <h3 class={`text-lg font-semibold ${group.accent}`}>{group.title}</h3>
+          <p class="mt-3 min-h-20 text-sm leading-6 text-slate-400">{group.description}</p>
+
+          <div class="mt-6 flex flex-wrap gap-2">
+            {group.technologies.map((technology) => (
+              <span class="rounded-lg border border-slate-700/80 bg-slate-950/70 px-3 py-2 text-sm text-slate-300">
+                {technology}
+              </span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
   </div>
 </section>
