@@ -5,12 +5,15 @@ const { title = "Yesser Portfolio" } = Astro.props;
 <html lang="es" class="bg-slate-950 text-slate-100">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{title}</title>
+    <slot name="head" />
   </head>
 
   <body class="min-h-screen flex flex-col">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute top-4 left-4 bg-cyan-400 text-slate-950 px-3 py-2 rounded">Saltar al contenido</a>
     <slot name="header" />
-    <main class="flex-1">
+    <main id="main" class="flex-1">
       <slot />
     </main>
     <slot name="footer" />

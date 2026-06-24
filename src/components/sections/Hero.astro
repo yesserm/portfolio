@@ -56,39 +56,9 @@ const roles = [
   </a>
 </section>
 
-<script>
-  const roles = JSON.parse(`${JSON.stringify(roles)}`);
-  const el = document.getElementById("typewriter");
+<script>window.__roles = JSON.parse(`${JSON.stringify(roles)}`);</script>
 
-  let index = 0;
-  let charIndex = 0;
-  let deleting = false;
-
-  function type() {
-    if (!el) return;
-
-    const current = roles[index];
-
-    if (!deleting) {
-      el.textContent = current.slice(0, charIndex++);
-      if (charIndex > current.length) {
-        deleting = true;
-        setTimeout(type, 1200);
-        return;
-      }
-    } else {
-      el.textContent = current.slice(0, charIndex--);
-      if (charIndex < 0) {
-        deleting = false;
-        index = (index + 1) % roles.length;
-      }
-    }
-
-    setTimeout(type, deleting ? 60 : 90);
-  }
-
-  type();
-</script>
+<script src="/scripts/typewriter.js" defer></script>
 
 <style>
   @keyframes fade-in {

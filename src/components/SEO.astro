@@ -1,0 +1,78 @@
+---
+/**
+Props:
+- title (string)
+- description (string)
+- url (string)  -> canonical full url
+- image (string) -> absolute url to preview image
+- keywords (string) -> comma separated
+- pageType (string) -> 'website' or 'article'
+- breadcrumb (Array of {position, name, item})
+*/
+const {
+  title = "Yesser Miranda — Full‑stack Developer | Yesser.dev",
+  description = "Full‑stack & mobile engineer. Diseño y entrego productos digitales escalables: interfaces limpias, APIs robustas y apps React Native.",
+  url = "https://yesserm.dev/",
+  image = "https://yesserm.dev/favicon.svg",
+  keywords = "Yesser Miranda, full-stack developer, React Native, Astro, TypeScript, Tailwind CSS, ASP.NET, mobile developer, portfolio",
+  pageType = "website",
+  breadcrumb = [
+    { position: 1, name: "Home", item: "https://yesserm.dev/" }
+  ]
+} = Astro.props;
+
+const person = {
+  "@type": "Person",
+  "name": "Yesser Miranda",
+  "url": "https://yesserm.dev/",
+  "email": "mailto:yessermiranda15@gmail.com",
+  "jobTitle": "Full‑stack Developer"
+};
+
+const website = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://yesserm.dev/",
+  "name": "Yesser.dev",
+  "author": {
+    "@type": "Person",
+    "name": "Yesser Miranda"
+  }
+};
+
+const breadcrumbList = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumb.map(b => ({
+    "@type": "ListItem",
+    "position": b.position,
+    "name": b.name,
+    "item": b.item
+  }))
+};
+
+const jsonLD = [person, website, breadcrumbList];
+---
+
+<!-- Basic meta -->
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<link rel="canonical" href={url} />
+
+<!-- Open Graph -->
+<meta property="og:type" content={pageType} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content={image} />
+<meta property="og:site_name" content="Yesser.dev" />
+<meta property="og:locale" content="es_ES" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+
+<!-- JSON-LD -->
+<script type="application/ld+json">{JSON.stringify(jsonLD)}</script>

@@ -4,9 +4,31 @@ import Header from "@components/layout/Header.astro";
 import Hero from "@components/sections/Hero.astro";
 import TechStack from "@sections/TechStack.astro";
 import ImpactMetrics from "@sections/ImpactMetrics.astro";
----
+import SEO from "@components/SEO.astro";
 
-<BaseLayout title="Yesser | Full-stack Developer">
+const meta = {
+  title: "Yesser Miranda — Full‑stack Developer | Yesser.dev",
+  description:
+    "Full‑stack & mobile engineer. Diseño y entrego productos digitales escalables: interfaces limpias, APIs robustas y apps React Native. Disponible para colaboraciones.",
+  url: "https://yesserm.dev/",
+  image: "https://yesserm.dev/favicon.svg",
+  keywords: "Yesser Miranda, full-stack developer, React Native, Astro, TypeScript, Tailwind CSS, ASP.NET"
+};
+---
+n<BaseLayout title={meta.title}>
+  <Fragment slot="head">
+    <SEO
+      title={meta.title}
+      description={meta.description}
+      url={meta.url}
+      image={meta.image}
+      keywords={meta.keywords}
+      breadcrumb={[
+        { position: 1, name: "Home", item: "https://yesserm.dev/" }
+      ]}
+    />
+  </Fragment>
+
 	<Fragment slot="header">
 		<Header />
 	</Fragment>
