@@ -1,0 +1,65 @@
+---
+import BaseLayout from "@layout/BaseLayout.astro";
+import Header from "@components/layout/Header.astro";
+import SEO from "@components/SEO.astro";
+import { site } from "@lib/site";
+
+const meta = {
+  title: `Blog — ${site.siteName}`,
+  description: "Entradas técnicas sobre desarrollo web y mobile.",
+  url: `${site.domain}/blog`,
+  image: site.socialImage,
+  keywords: "blog, artículos, Yesser Miranda, desarrollo"
+};
+
+// Import markdown posts inside this folder
+const posts = Object.entries(import.meta.glob('./*.md', { eager: true })).map(([path, mod]) => {
+  const slug = path.replace('./', '').replace('.md', '');
+  const fm = mod.frontmatter || mod.metadata || {};
+  return {
+    slug,
+    title: fm.title || slug,
+    date: fm.date || null,
+    description: fm.description || '',
+    url: `${meta.url}/${slug}`
+  };
+}).sort((a,b) => (b.date || '').localeCompare(a.date || ''));
+---
+
+<BaseLayout title={meta.title}>
+  <Fragment slot="head">
+    <SEO
+      title={meta.title}
+      description={meta.description}
+      url={meta.url}
+      image={meta.image}
+      keywords={meta.keywords}
+      breadcrumb={[{ position: 1, name: 'Home', item: site.domain }, { position: 2, name: 'Blog', item: `${site.domain}/blog` }]}
+    />
+  </Fragment>
+
+  <Fragment slot="header">
+    <Header />
+  </Fragment>
+
+  <section class="px-6 py-20">
+    <div class="mx-auto max-w-4xl">
+      <h1 class="text-3xl font-bold text-white">Blog</h1>
+      <p class="mt-2 text-slate-400">Entradas y notas sobre ingeniería, arquitectura y mobile.</p>
+
+      <div class="mt-8 grid gap-6">
+        {posts.length === 0 ? (
+          <p class="text-slate-400">No hay publicaciones todavía.</p>
+        ) : (
+          posts.map(post => (
+            <article class="rounded-lg border border-slate-800 bg-slate-900/60 p-6">
+              <a href={post.url} class="text-xl font-semibold text-cyan-300 hover:underline">{post.title}</a>
+              {post.date && <p class="mt-2 text-sm text-slate-400">{post.date}</p>}
+              {post.description && <p class="mt-3 text-slate-300">{post.description}</p>}
+            </article>
+          ))
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

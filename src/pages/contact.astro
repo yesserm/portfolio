@@ -1,0 +1,63 @@
+---
+import BaseLayout from "@layout/BaseLayout.astro";
+import Header from "@components/layout/Header.astro";
+import SEO from "@components/SEO.astro";
+import { site } from "@lib/site";
+
+const meta = {
+  title: `Contacto — ${site.siteName}`,
+  description: "Contacta a Yesser para proyectos, consultorías o colaboraciones.",
+  url: `${site.domain}/contact`,
+  image: site.socialImage,
+  keywords: "contacto, Yesser Miranda, email, consultoría"
+};
+---
+
+<BaseLayout title={meta.title}>
+  <Fragment slot="head">
+    <SEO
+      title={meta.title}
+      description={meta.description}
+      url={meta.url}
+      image={meta.image}
+      keywords={meta.keywords}
+      breadcrumb={[{ position: 1, name: 'Home', item: site.domain }, { position: 2, name: 'Contacto', item: `${site.domain}/contact` }]}
+    />
+  </Fragment>
+
+  <Fragment slot="header">
+    <Header />
+  </Fragment>
+
+  <section class="px-6 py-20">
+    <div class="mx-auto max-w-2xl">
+      <h1 class="text-3xl font-bold text-white">Contacto</h1>
+      <p class="mt-2 text-slate-400">Escribe un mensaje y me pondré en contacto contigo.</p>
+
+      <div class="mt-8 rounded-lg border border-slate-800 bg-slate-900/60 p-6">
+        <p class="text-slate-300">Yesser — yesserm.dev@gmail.com</p>
+
+        <form class="mt-6 grid gap-4" action="#" method="post" onsubmit="alert('Formulario de ejemplo: conecta un backend o servicio de correo'); return false;">
+          <div>
+            <label class="block text-sm text-slate-300">Nombre</label>
+            <input name="name" type="text" required class="mt-1 w-full rounded-lg bg-slate-950/60 border border-slate-800 px-3 py-2 text-sm text-slate-100" />
+          </div>
+
+          <div>
+            <label class="block text-sm text-slate-300">Email</label>
+            <input name="email" type="email" required class="mt-1 w-full rounded-lg bg-slate-950/60 border border-slate-800 px-3 py-2 text-sm text-slate-100" />
+          </div>
+
+          <div>
+            <label class="block text-sm text-slate-300">Mensaje</label>
+            <textarea name="message" rows="5" required class="mt-1 w-full rounded-lg bg-slate-950/60 border border-slate-800 px-3 py-2 text-sm text-slate-100"></textarea>
+          </div>
+
+          <div>
+            <button type="submit" class="inline-flex items-center justify-center rounded-lg bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
