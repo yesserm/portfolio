@@ -1,29 +1,20 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "@layout/BaseLayout.astro";
 import Header from "@components/layout/Header.astro";
 import SEO from "@components/SEO.astro";
 import { site } from "@lib/site";
+import { formatBlogDate, getBlogUrl, sortPosts } from "@lib/blog";
+
+const posts = sortPosts(await getCollection("blog"));
 
 const meta = {
   title: `Blog — ${site.siteName}`,
-  description: "Entradas técnicas sobre desarrollo web y mobile.",
+  description: "Entradas tecnicas en espanol e ingles sobre desarrollo web, mobile y arquitectura.",
   url: `${site.domain}/blog`,
   image: site.socialImage,
-  keywords: "blog, artículos, Yesser Miranda, desarrollo"
+  keywords: "blog, articulos, Yesser Miranda, desarrollo web, mobile, software architecture",
 };
-
-// Import markdown posts inside this folder
-const posts = Object.entries(import.meta.glob('./*.md', { eager: true })).map(([path, mod]) => {
-  const slug = path.replace('./', '').replace('.md', '');
-  const fm = mod.frontmatter || mod.metadata || {};
-  return {
-    slug,
-    title: fm.title || slug,
-    date: fm.date || null,
-    description: fm.description || '',
-    url: `${meta.url}/${slug}`
-  };
-}).sort((a,b) => (b.date || '').localeCompare(a.date || ''));
 ---
 
 <BaseLayout title={meta.title}>
@@ -34,7 +25,10 @@ const posts = Object.entries(import.meta.glob('./*.md', { eager: true })).map(([
       url={meta.url}
       image={meta.image}
       keywords={meta.keywords}
-      breadcrumb={[{ position: 1, name: 'Home', item: site.domain }, { position: 2, name: 'Blog', item: `${site.domain}/blog` }]}
+      breadcrumb={[
+        { position: 1, name: "Home", item: site.domain },
+        { position: 2, name: "Blog", item: `${site.domain}/blog` },
+      ]}
     />
   </Fragment>
 
@@ -45,20 +39,19 @@ const posts = Object.entries(import.meta.glob('./*.md', { eager: true })).map(([
   <section class="px-6 py-20">
     <div class="mx-auto max-w-4xl">
       <h1 class="text-3xl font-bold text-white">Blog</h1>
-      <p class="mt-2 text-slate-400">Entradas y notas sobre ingeniería, arquitectura y mobile.</p>
+      <p class="mt-2 text-slate-400">Entradas y notas en espanol e ingles.</p>
 
       <div class="mt-8 grid gap-6">
-        {posts.length === 0 ? (
-          <p class="text-slate-400">No hay publicaciones todavía.</p>
-        ) : (
-          posts.map(post => (
-            <article class="rounded-lg border border-slate-800 bg-slate-900/60 p-6">
-              <a href={post.url} class="text-xl font-semibold text-cyan-300 hover:underline">{post.title}</a>
-              {post.date && <p class="mt-2 text-sm text-slate-400">{post.date}</p>}
-              {post.description && <p class="mt-3 text-slate-300">{post.description}</p>}
-            </article>
-          ))
-        )}
+        {posts.map((post) => (
+          <article class="rounded-lg border border-slate-800 bg-slate-900/60 p-6">
+            <p class="text-xs font-semibold uppercase tracking-wide text-cyan-300">{post.data.lang}</p>
+            <a href={getBlogUrl(post.data.lang, post.data.slug)} class="mt-2 block text-xl font-semibold text-white hover:text-cyan-300">
+              {post.data.title}
+            </a>
+            <p class="mt-2 text-sm text-slate-400">{formatBlogDate(post.data.pubDate, post.data.lang)}</p>
+            <p class="mt-3 text-slate-300">{post.data.description}</p>
+          </article>
+        ))}
       </div>
     </div>
   </section>

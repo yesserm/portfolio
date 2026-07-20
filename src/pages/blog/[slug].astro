@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  const slugs = [...new Set(posts.map((post) => post.data.slug))];
+
+  return slugs.map((slug) => ({
+    params: { slug },
+    props: { slug },
+  }));
+}
+
+const { slug } = Astro.props;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline define:vars={{ slug }}>
+      const lang = navigator.language.toLowerCase().startsWith("en") ? "en" : "es";
+      window.location.replace(`/${lang}/blog/${slug}`);
+    </script>
+    <noscript>
+      <meta http-equiv="refresh" content={`0; url=/es/blog/${slug}`} />
+    </noscript>
+  </head>
+  <body>
+    <a href={`/es/blog/${slug}`}>Continuar al articulo</a>
+  </body>
+</html>

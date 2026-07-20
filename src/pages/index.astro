@@ -1,21 +1,25 @@
 ---
 import BaseLayout from "@layout/BaseLayout.astro";
 import Header from "@components/layout/Header.astro";
-import Hero from "@components/sections/Hero.astro";
+import SEO from "@components/SEO.astro";
+import Hero from "@sections/Hero.astro";
+import Projects from "@sections/Projects.astro";
+import About from "@sections/About.astro";
 import TechStack from "@sections/TechStack.astro";
 import ImpactMetrics from "@sections/ImpactMetrics.astro";
-import SEO from "@components/SEO.astro";
+import Contact from "@sections/Contact.astro";
+import { site } from "@lib/site";
 
 const meta = {
-  title: "Yesser Miranda — Full‑stack Developer | Yesser.dev",
-  description:
-    "Full‑stack & mobile engineer. Diseño y entrego productos digitales escalables: interfaces limpias, APIs robustas y apps React Native. Disponible para colaboraciones.",
-  url: "https://yesserm.dev/",
-  image: "https://yesserm.dev/favicon.svg",
-  keywords: "Yesser Miranda, full-stack developer, React Native, Astro, TypeScript, Tailwind CSS, ASP.NET"
+  title: "Yesser Miranda — Full-stack Developer | Yesser.dev",
+  description: "Portfolio de Yesser Miranda, desarrollador full-stack especializado en productos web, móviles y APIs confiables.",
+  url: site.domain,
+  image: site.socialImage,
+  keywords: "Yesser Miranda, full-stack developer, Astro, TypeScript, React Native, ASP.NET, portfolio",
 };
 ---
-n<BaseLayout title={meta.title}>
+
+<BaseLayout title={meta.title}>
   <Fragment slot="head">
     <SEO
       title={meta.title}
@@ -23,16 +27,18 @@ const meta = {
       url={meta.url}
       image={meta.image}
       keywords={meta.keywords}
-      breadcrumb={[
-        { position: 1, name: "Home", item: "https://yesserm.dev/" }
-      ]}
+      breadcrumb={[{ position: 1, name: "Inicio", item: site.domain }]}
     />
   </Fragment>
 
-	<Fragment slot="header">
-		<Header />
-	</Fragment>
-	<Hero />
-	<TechStack />
-	<ImpactMetrics />
+  <Fragment slot="header">
+    <Header />
+  </Fragment>
+
+  <Hero />
+  <Projects />
+  <About />
+  <TechStack />
+  <ImpactMetrics />
+  <Contact />
 </BaseLayout>

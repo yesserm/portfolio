@@ -8,6 +8,8 @@ Props:
 - keywords (string) -> comma separated
 - pageType (string) -> 'website' or 'article'
 - breadcrumb (Array of {position, name, item})
+- lang (string) -> page language
+- article (object) -> Article JSON-LD payload
 */
 const {
   title = "Yesser Miranda — Full‑stack Developer | Yesser.dev",
@@ -16,6 +18,8 @@ const {
   image = "https://yesserm.dev/favicon.svg",
   keywords = "Yesser Miranda, full-stack developer, React Native, Astro, TypeScript, Tailwind CSS, ASP.NET, mobile developer, portfolio",
   pageType = "website",
+  lang = "es",
+  article,
   breadcrumb = [
     { position: 1, name: "Home", item: "https://yesserm.dev/" }
   ]
@@ -51,7 +55,31 @@ const breadcrumbList = {
   }))
 };
 
-const jsonLD = [person, website, breadcrumbList];
+const articleData = article ? {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": article.headline || title,
+  "description": article.description || description,
+  "image": article.image || image,
+  "author": person,
+  "publisher": {
+    "@type": "Organization",
+    "name": "Yesser.dev",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://yesserm.dev/favicon.svg"
+    }
+  },
+  "datePublished": article.datePublished,
+  "dateModified": article.dateModified || article.datePublished,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": url
+  }
+} : null;
+
+const locale = lang === "en" ? "en_US" : "es_ES";
+const jsonLD = [person, website, breadcrumbList, articleData].filter(Boolean);
 ---
 
 <!-- Basic meta -->
@@ -66,7 +94,8 @@ const jsonLD = [person, website, breadcrumbList];
 <meta property="og:url" content={url} />
 <meta property="og:image" content={image} />
 <meta property="og:site_name" content="Yesser.dev" />
-<meta property="og:locale" content="es_ES" />
+<meta property="og:locale" content={locale} />
+<meta property="og:locale:alternate" content={lang === "en" ? "es_ES" : "en_US"} />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -75,4 +104,4 @@ const jsonLD = [person, website, breadcrumbList];
 <meta name="twitter:image" content={image} />
 
 <!-- JSON-LD -->
-<script type="application/ld+json">{JSON.stringify(jsonLD)}</script>
+<script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />

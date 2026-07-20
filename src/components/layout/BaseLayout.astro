@@ -1,8 +1,11 @@
 ---
-import "../../styles/global.css"; // importa Tailwind
-const { title = "Yesser Portfolio" } = Astro.props;
+import "../../styles/global.css";
+import Footer from "./Footer.astro";
+
+const { title = "Yesser Portfolio", lang = "es" } = Astro.props;
 ---
-<html lang="es" class="bg-slate-950 text-slate-100">
+
+<html lang={lang} class="bg-slate-950 text-slate-100 scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -10,12 +13,12 @@ const { title = "Yesser Portfolio" } = Astro.props;
     <slot name="head" />
   </head>
 
-  <body class="min-h-screen flex flex-col">
-    <a href="#main" class="sr-only focus:not-sr-only focus:absolute top-4 left-4 bg-cyan-400 text-slate-950 px-3 py-2 rounded">Saltar al contenido</a>
+  <body class="min-h-screen bg-slate-950 font-sans antialiased flex flex-col selection:bg-cyan-300 selection:text-slate-950">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute top-4 left-4 z-50 rounded-lg bg-cyan-300 px-3 py-2 font-medium text-slate-950 shadow-lg">Saltar al contenido</a>
     <slot name="header" />
     <main id="main" class="flex-1">
       <slot />
     </main>
-    <slot name="footer" />
+    <Footer />
   </body>
 </html>

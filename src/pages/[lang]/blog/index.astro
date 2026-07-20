@@ -1,0 +1,78 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@layout/BaseLayout.astro";
+import Header from "@components/layout/Header.astro";
+import SEO from "@components/SEO.astro";
+import { site } from "@lib/site";
+import { formatBlogDate, getBlogUrl, isBlogLang, sortPosts } from "@lib/blog";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const lang = Astro.params.lang;
+
+if (!isBlogLang(lang)) {
+  return Astro.redirect("/blog");
+}
+
+const posts = sortPosts(
+  (await getCollection("blog")).filter((post) => post.data.lang === lang),
+);
+const title = "Blog";
+const description =
+  lang === "es"
+    ? "Entradas tecnicas sobre desarrollo web, mobile y arquitectura."
+    : "Technical posts about web development, mobile, and architecture.";
+
+const meta = {
+  title: `${title} — ${site.siteName}`,
+  description,
+  url: `${site.domain}/${lang}/blog`,
+  image: site.socialImage,
+  keywords: "blog, Yesser Miranda, desarrollo web, mobile, software architecture",
+};
+---
+
+<BaseLayout title={meta.title} lang={lang}>
+  <Fragment slot="head">
+    <SEO
+      title={meta.title}
+      description={meta.description}
+      url={meta.url}
+      image={meta.image}
+      keywords={meta.keywords}
+      lang={lang}
+      breadcrumb={[
+        { position: 1, name: "Home", item: site.domain },
+        { position: 2, name: "Blog", item: `${site.domain}/${lang}/blog` },
+      ]}
+    />
+    <link rel="alternate" hreflang="es" href={`${site.domain}/es/blog`} />
+    <link rel="alternate" hreflang="en" href={`${site.domain}/en/blog`} />
+    <link rel="alternate" hreflang="x-default" href={`${site.domain}/blog`} />
+  </Fragment>
+
+  <Fragment slot="header">
+    <Header />
+  </Fragment>
+
+  <section class="px-6 py-20">
+    <div class="mx-auto max-w-4xl">
+      <h1 class="text-3xl font-bold text-white">{title}</h1>
+      <p class="mt-2 text-slate-400">{description}</p>
+
+      <div class="mt-8 grid gap-6">
+        {posts.map((post) => (
+          <article class="rounded-lg border border-slate-800 bg-slate-900/60 p-6">
+            <a href={getBlogUrl(post.data.lang, post.data.slug)} class="text-xl font-semibold text-cyan-300 hover:underline">
+              {post.data.title}
+            </a>
+            <p class="mt-2 text-sm text-slate-400">{formatBlogDate(post.data.pubDate, lang)}</p>
+            <p class="mt-3 text-slate-300">{post.data.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

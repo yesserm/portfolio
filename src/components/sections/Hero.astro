@@ -1,88 +1,26 @@
----
-const roles = [
-  "Full-stack Developer",
-  "React Native Specialist",
-  "ASP.NET Web API Developer",
-  "Mobile & Web Engineer"
-];
----
+<section class="relative isolate overflow-hidden px-6 py-24 sm:py-32">
+  <div aria-hidden="true" class="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.13),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(167,139,250,0.12),transparent_28%)]"></div>
+  <div aria-hidden="true" class="absolute left-1/2 top-0 -z-10 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-cyan-300/50 to-transparent"></div>
 
-<section class="relative isolate flex min-h-[calc(100vh-72px)] flex-col items-center justify-center overflow-hidden px-6 py-24 text-center">
-  <div class="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.14),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.11),transparent_30%)]"></div>
-  <div class="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-cyan-300/40 to-transparent"></div>
-
-  <div class="mb-8 flex size-24 items-center justify-center rounded-lg border border-cyan-300/30 bg-slate-900/80 text-3xl font-semibold text-cyan-200 shadow-[0_0_50px_rgba(34,211,238,0.12)] animate-fade-in">
-    YM
+  <div class="mx-auto max-w-4xl text-center">
+    <p class="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm font-medium text-slate-300">
+      <span class="size-2 rounded-full bg-emerald-400"></span>
+      Disponible para nuevos proyectos
+    </p>
+    <p class="mt-8 text-sm font-semibold uppercase tracking-[0.24em] text-cyan-300">Yesser Miranda</p>
+    <h1 class="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-6xl">
+      Full-stack Developer que convierte ideas en productos claros y confiables.
+    </h1>
+    <p class="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+      Diseño y desarrollo experiencias web y móviles con arquitectura limpia, interfaces cuidadas y bases preparadas para crecer.
+    </p>
+    <div class="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+      <a href="#projects" class="rounded-lg bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/10 transition hover:bg-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-slate-950">
+        Ver proyectos
+      </a>
+      <a href="#contact" class="rounded-lg border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200 transition hover:border-slate-500 hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-950">
+        Hablemos
+      </a>
+    </div>
   </div>
-
-  <p class="mb-4 inline-flex items-center gap-2 rounded-lg border border-slate-700/80 bg-slate-900/70 px-4 py-2 text-sm font-medium text-slate-300 animate-fade-in animation-delay-200">
-    <span class="size-2 rounded-full bg-emerald-400"></span>
-    Available for high-impact web and mobile projects
-  </p>
-
-  <h1 class="max-w-4xl text-4xl font-bold tracking-tight text-white drop-shadow-lg md:text-6xl animate-fade-in animation-delay-300">
-    Hi, I'm <span class="text-cyan-400">Yesser</span>
-  </h1>
-
-  <p class="mt-5 h-8 text-xl text-slate-300 md:text-2xl animate-fade-in animation-delay-500">
-    <span id="typewriter"></span>
-  </p>
-
-  <p class="mt-6 max-w-2xl text-base leading-8 text-slate-300 md:text-lg animate-fade-in animation-delay-700">
-    I design and build reliable digital products with clean architecture, thoughtful interfaces, and production-ready engineering for startups, teams, and growing businesses.
-  </p>
-
-  <div class="mt-10 flex w-full max-w-md flex-col justify-center gap-3 sm:flex-row animate-fade-in animation-delay-900">
-    <a
-      href="#projects"
-      class="inline-flex items-center justify-center rounded-lg bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition duration-300 hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-slate-950"
-    >
-      View Projects
-    </a>
-
-    <a
-      href="/cv.pdf"
-      class="inline-flex items-center justify-center rounded-lg border border-slate-600 px-6 py-3 text-sm font-semibold text-slate-200 transition duration-300 hover:border-slate-400 hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-950"
-    >
-      Download CV
-    </a>
-  </div>
-
-  <a href="#tech-stack" aria-label="Scroll to tech stack" class="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs font-medium uppercase tracking-[0.24em] text-slate-500 transition hover:text-cyan-300 md:flex">
-    Scroll
-    <span class="relative h-10 w-5 rounded-full border border-slate-600">
-      <span class="absolute left-1/2 top-2 size-1.5 -translate-x-1/2 rounded-full bg-cyan-300 animate-scroll-dot"></span>
-    </span>
-  </a>
 </section>
-
-<script>window.__roles = JSON.parse(`${JSON.stringify(roles)}`);</script>
-
-<script src="/scripts/typewriter.js" defer></script>
-
-<style>
-  @keyframes fade-in {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .animate-fade-in {
-    animation: fade-in 0.8s ease forwards;
-  }
-
-  .animation-delay-200 { animation-delay: 0.2s; opacity: 0; }
-  .animation-delay-300 { animation-delay: 0.3s; opacity: 0; }
-  .animation-delay-500 { animation-delay: 0.5s; opacity: 0; }
-  .animation-delay-700 { animation-delay: 0.7s; opacity: 0; }
-  .animation-delay-900 { animation-delay: 0.9s; opacity: 0; }
-
-  @keyframes scroll-dot {
-    0% { opacity: 0; transform: translate(-50%, 0); }
-    30% { opacity: 1; }
-    100% { opacity: 0; transform: translate(-50%, 18px); }
-  }
-
-  .animate-scroll-dot {
-    animation: scroll-dot 1.6s ease-in-out infinite;
-  }
-</style>
